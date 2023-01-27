@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BUTTON, CONTAINER, FORM, INPUT, LOGO } from '../components/auth';
+import { BUTTON, CONTAINER, DIVINPUT, FORM, INPUT, LOGO } from '../components/auth';
 import Link from '../components/Link';
 import useSignUp from '../hooks/api/useSignUp';
 import { useNavigate } from 'react-router-dom';
@@ -31,12 +31,14 @@ export default function SignUp() {
     <CONTAINER>
       <LOGO src={logoicon}/>
       <FORM onSubmit={submit}>
-        <INPUT label="E-mail" type="text" value={email} onChange={e => setEmail(e.target.value)} />
-        <INPUT label="Senha" type="password" value={password} onChange={e => setPassword(e.target.value)} />
-        <INPUT label="Repita sua senha" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
-        <BUTTON type="submit" disabled={loadingSignUp}>Inscrever</BUTTON>
+        <DIVINPUT>
+          <INPUT label="E-mail" type="text" placeholder="Insira seu email" value={email} onChange={e => setEmail(e.target.value)} />
+          <INPUT label="Senha" type="password" placeholder="Insira sua senha" value={password} onChange={e => setPassword(e.target.value)} />
+          <INPUT label="Repita sua senha" type="password" placeholder="Confirme sua senha" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+        </DIVINPUT>
+        <BUTTON type="submit" disabled={loadingSignUp}>Criar Conta</BUTTON>
       </FORM>
-      <Link to="/sign-up">cadastroooo</Link>
+      <Link to="/sign-in">Já possui conta? Faça login</Link>
     </CONTAINER>
   );
 }
