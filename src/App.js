@@ -9,7 +9,10 @@ import { UserProvider } from './contexts/UserContext';
 import useToken from './hooks/useToken';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import Hometemporario from './pages/Hometemporario';
+import MainLayout from './pages/MainContent/index';
+import Diet from './pages/MainContent/Diet';
+import InsertFood from './pages/MainContent/InsertFood';
+import PersonalInfo from './pages/MainContent/PersonalInfo';
 
 export default function App() {
   return (
@@ -18,12 +21,15 @@ export default function App() {
       <UserProvider>
         <Router>
           <Routes>
-            <Route path="/" element={
+            <Route path="/" element={<Navigate to="/home"/>}/>
+            <Route path="/home" element={
               <ProtectedRouteGuard>
-                <Hometemporario/>
+                <MainLayout/>
               </ProtectedRouteGuard>}>
-              <Route path="/home" element={<Hometemporario/>}/>
-              <Route index path="*" element={<Navigate to="/home" />} />
+              <Route path="diet" element={<Diet/>}/>
+              <Route path="insert-food" element={<InsertFood/>}/>
+              <Route path="personal-info" element={<PersonalInfo/>}/>
+              <Route index path="*" element={<Navigate to="/home/diet" />} />
             </Route>
             <Route path="/sign-in" element={<SignIn/>}/>
             <Route path="/sign-up" element={<SignUp/>}/>
