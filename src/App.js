@@ -9,6 +9,7 @@ import { UserProvider } from './contexts/UserContext';
 import useToken from './hooks/useToken';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import Hometemporario from './pages/Hometemporario';
 
 export default function App() {
   return (
@@ -19,9 +20,10 @@ export default function App() {
           <Routes>
             <Route path="/" element={
               <ProtectedRouteGuard>
-                <Navigate to="/home"/>
+                <Hometemporario/>
               </ProtectedRouteGuard>}>
-              <Route path="/home"/>
+              <Route path="/home" element={<Hometemporario/>}/>
+              <Route index path="*" element={<Navigate to="/home" />} />
             </Route>
             <Route path="/sign-in" element={<SignIn/>}/>
             <Route path="/sign-up" element={<SignUp/>}/>

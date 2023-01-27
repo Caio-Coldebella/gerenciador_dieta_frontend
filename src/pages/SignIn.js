@@ -1,19 +1,40 @@
-import { CONTAINER, FORM } from '../components/auth';
+import { useContext, useState } from 'react';
+import { CONTAINER, FORM, LOGO, DIVINPUT, INPUT, BUTTON } from '../components/auth';
 import Link from '../components/Link';
+import useSignIn from '../hooks/api/useSignIn';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import logoicon from '../assets/logos/icon-initial.png';
+import UserContext from '../contexts/UserContext';
+
 export default function SignIn() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { loadingSignIn, signIn } = useSignIn();
+  const navigate = useNavigate();
+  const { setUserData } = useContext(UserContext);  
+  async function submit(event) {
+    event.preventDefault();
+    try {
+      const userData = await signIn(email, password);
+      setUserData(userData);
+      toast('Login realizado com sucesso!');
+      navigate('/');
+    } catch (err) {
+      toast('Não foi possível fazer o login!');
+    }
+  } 
   return (
     <CONTAINER>
-      <FORM>
-
+      <LOGO src={logoicon}/>
+      <FORM onSubmit={submit}>
+        <DIVINPUT>
+          <INPUT label="E-mail" type="text" placeholder="Insira seu email" value={email} onChange={e => setEmail(e.target.value)} />
+          <INPUT label="Senha" type="password" placeholder="Insira sua senha" value={password} onChange={e => setPassword(e.target.value)} />
+        </DIVINPUT>
+        <BUTTON type="submit" disabled={loadingSignIn}>Entrar</BUTTON>
       </FORM>
-      <Link to="/sign-up">cadastro</Link>
+      <Link to="/sign-up">Ainda não possui uma conta? Cadastre-se</Link>
     </CONTAINER>
   );
 }
-/*
-        <form onSubmit={submit}>
-          <Input label="E-mail" type="text" fullWidth value={email} onChange={e => setEmail(e.target.value)} />
-          <Input label="Senha" type="password" fullWidth value={password} onChange={e => setPassword(e.target.value)} />
-          <Button type="submit" color="primary" fullWidth disabled={loadingSignIn}>Entrar</Button>
-        </form>
-*/
