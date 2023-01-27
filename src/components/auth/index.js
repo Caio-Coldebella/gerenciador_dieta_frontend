@@ -16,12 +16,12 @@ export const FORM = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 50%;
+  height: ${props => props.height || '50%'};
   width: 80%;
 `;
 
 export const BUTTON = styled.button`
-  height: 10%;
+  height: ${props => props.height || '10%'};
   width: 70%;
   border: none;
   border-radius: 10px;
@@ -34,7 +34,7 @@ export const DIVINPUT = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 80%;
+  height: ${props => props.height || '80%'};
   width: 100%;
   padding: 20px 0 20px 0;
   border-radius: 10px;
@@ -42,7 +42,7 @@ export const DIVINPUT = styled.div`
 `;
 
 export const INPUT = styled.input`
-  height: 25%;
+  height: ${props => props.height || '25%'};
   width: 90%;
   background-color: #F6F6F6;
   border: none;
