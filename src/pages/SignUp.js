@@ -16,14 +16,14 @@ export default function SignUp() {
   async function submit(event) {
     event.preventDefault();
     if (password !== confirmPassword) {
-      toast('As senhas devem ser iguais!');
+      toast('Passwords must be equal!');
     } else {
       try {
         await signUp(email, password);
-        toast('Inscrito com sucesso! Por favor, faça login.');
+        toast('Successfully enrolled! Please login.');
         navigate('/sign-in');
       } catch (error) {
-        toast('Não foi possível fazer o cadastro! (a senha precisa possuir pelo menos 6 caracteres)');
+        toast('Unable to register! (password must be at least 6 characters long)');
       }
     }
   }
@@ -32,13 +32,13 @@ export default function SignUp() {
       <LOGO src={logoicon}/>
       <FORM onSubmit={submit}>
         <DIVINPUT>
-          <INPUT label="E-mail" type="text" placeholder="Insira seu email" value={email} onChange={e => setEmail(e.target.value)} />
-          <INPUT label="Senha" type="password" placeholder="Insira sua senha" value={password} onChange={e => setPassword(e.target.value)} />
-          <INPUT label="Repita sua senha" type="password" placeholder="Confirme sua senha" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+          <INPUT label="E-mail" type="text" placeholder="Insert your email" value={email} onChange={e => setEmail(e.target.value)} />
+          <INPUT label="Password" type="password" placeholder="Insert your password" value={password} onChange={e => setPassword(e.target.value)} />
+          <INPUT label="Repeat your password" type="password" placeholder="Confirm your password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
         </DIVINPUT>
-        <BUTTON type="submit" disabled={loadingSignUp}>Criar Conta</BUTTON>
+        <BUTTON type="submit" disabled={loadingSignUp}>Create account</BUTTON>
       </FORM>
-      <Link to="/sign-in">Já possui conta? Faça login</Link>
+      <Link to="/sign-in">Already have an account? Sign in</Link>
     </CONTAINER>
   );
 }

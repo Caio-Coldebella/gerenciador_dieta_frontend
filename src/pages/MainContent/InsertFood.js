@@ -1,7 +1,7 @@
 export default function InsertFood() {
   return (
     <>
-      <p>Em breve: Cadastramento de alimentos</p>
+      <p>Coming soon: Food registration</p>
     </>
   );
 }

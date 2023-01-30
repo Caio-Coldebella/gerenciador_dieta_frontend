@@ -7,8 +7,8 @@ export default function Bottombar() {
   return (
     <CONTENT>
       <IoMdNutrition size={40} onClick={() => {navigate('/home/diet');}}/>
-      {/*<IoIosFitness size={40}/>  // Rota de inserir treino*/}
-      {/*<IoMdGlobe size={40} //Rota de social media />*/}
+      {/*<IoIosFitness size={40}/>  // insert train route*/}
+      {/*<IoMdGlobe size={40} //social media route/>*/}
       <IoMdBody size={40} onClick={() => {navigate('/home/personal-info');}}/>
     </CONTENT>
   );
