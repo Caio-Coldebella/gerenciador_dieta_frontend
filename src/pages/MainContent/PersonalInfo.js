@@ -1,7 +1,7 @@
 export default function PersonalInfo() {
   return (
     <>
-      <p>Futuramente: Cálculo de informações físicas pessoais</p>
+      <p>In the future: Calculation of personal physical information</p>
     </>
   );
 }

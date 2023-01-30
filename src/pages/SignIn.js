@@ -18,10 +18,10 @@ export default function SignIn() {
     try {
       const userData = await signIn(email, password);
       setUserData(userData);
-      toast('Login realizado com sucesso!');
+      toast('Login successful!');
       navigate('/home');
     } catch (err) {
-      toast('Não foi possível fazer o login!');
+      toast('Unable to login!');
     }
   } 
   return (
@@ -29,12 +29,12 @@ export default function SignIn() {
       <LOGO src={logoicon}/>
       <FORM onSubmit={submit} height="35%">
         <DIVINPUT height="75%">
-          <INPUT height="40%" label="E-mail" type="text" placeholder="Insira seu email" value={email} onChange={e => setEmail(e.target.value)} />
-          <INPUT height="40%" label="Senha" type="password" placeholder="Insira sua senha" value={password} onChange={e => setPassword(e.target.value)} />
+          <INPUT height="40%" label="E-mail" type="text" placeholder="Inser your email" value={email} onChange={e => setEmail(e.target.value)} />
+          <INPUT height="40%" label="Password" type="password" placeholder="Insert your password" value={password} onChange={e => setPassword(e.target.value)} />
         </DIVINPUT>
-        <BUTTON height="15%" type="submit" disabled={loadingSignIn}>Entrar</BUTTON>
+        <BUTTON height="15%" type="submit" disabled={loadingSignIn}>Sign-in</BUTTON>
       </FORM>
-      <Link to="/sign-up">Ainda não possui uma conta? Cadastre-se</Link>
+      <Link to="/sign-up">Don't have an account yet? Register</Link>
     </CONTAINER>
   );
 }
