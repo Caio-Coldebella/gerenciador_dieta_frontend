@@ -1,7 +1,7 @@
 import api from './api';
 
 export async function getFood(name, token) {
-  const response = await api.get(`/foods/:${name}`, {
+  const response = await api.get(`/foods/${name}`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
