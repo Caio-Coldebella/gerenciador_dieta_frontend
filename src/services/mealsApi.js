@@ -17,3 +17,21 @@ export async function postMeal(name, token) {
   });
   return response.data;
 }
+
+export async function getFoodsofMeal(mealId, token) {
+  const response = await api.get(`/meals/${mealId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return response.data;
+}
+
+export async function postFoodofMeal(mealId, body, token) {
+  const response = await api.post(`/meals/${mealId}`, body, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return response.data;
+}
