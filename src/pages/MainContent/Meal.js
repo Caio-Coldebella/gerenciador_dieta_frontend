@@ -1,69 +1,104 @@
-import styled from 'styled-components';
 import { IoIosArrowDown, IoIosArrowUp, IoMdTrash } from 'react-icons/io';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import meal from '../../components/diet/meal-styles';
 import useGetFood from '../../hooks/api/useGetFood';
+import usePostFoodofMeal from '../../hooks/api/usePostFoodofMeal';
+import useGetFoodofMeal from '../../hooks/api/useGetFoodofMeal';
 import { toast } from 'react-toastify';
+import Mealfood from './Mealfood';
+import { Mealinfos } from './Mealinfos';
 export default function Meal({ id, name }) {
   const [open, setOpen] = useState(false);
+  const [searchfood, setSearchfood] = useState(false);
   const [foodname, setFoodname] = useState('');
-  const { getfood } = useGetFood();
+  const [foodresult, setFoodresult] = useState([]);
+  const [selectedfood, setSelectedfood] = useState();
+  const [amount, setAmount] = useState('');
+  const [updateFoods, setUpdateFoods] = useState(false);
+  const [fooddata, setFooddata] = useState([]);
+  const { getfood, GetFoodLoading } = useGetFood();
+  const { postfoodofmeal, PostFoodofMealLoading } = usePostFoodofMeal();
+  const { getfoodofmeal } = useGetFoodofMeal();
+  const childRef = useRef();
 
-  async function submit(event) {
+  useEffect(() => {
+    getfoodofmeal(id)
+      .then((res) => {setFooddata(res);})
+      .catch((err) => {toast(err);});
+  }, [updateFoods]);
+
+  async function submitgetfood(event) {
     event.preventDefault();
     try {
       const food = await getfood(foodname);
-      console.log(food);
+      setFoodresult([food]);
     } catch {
       toast('Fail');
     }
   }
-
+  async function submitpostfood(event) {
+    event.preventDefault();
+    try {
+      const amountn = Number(amount);
+      const body = {
+        name: selectedfood.name,
+        quantity: amountn,
+        calories: selectedfood.calories100g*(amountn/100),
+        carb: selectedfood.carb100g*(amountn/100),
+        protein: selectedfood.protein100g*(amountn/100),
+        fat: selectedfood.fat100g*(amountn/100)
+      };
+      setAmount('');
+      setSelectedfood(null);
+      setFoodresult([]);
+      setFoodname('');
+      setSearchfood(false);
+      await postfoodofmeal(id, body);
+      setUpdateFoods(!updateFoods);
+      childRef.current.doSomething();
+    } catch (error) {
+      toast('Fail');
+    }
+  }
   return(
-    <MEAL open={open}>
+    <meal.MEAL open={open}>
       {open?
         <>
-          <p>{name}</p>
-          <IoIosArrowUp onClick={() => {setOpen(false);}}/>
-          <ADDFOOD onSubmit={submit}>
-            <INPUT label="name" type="text" placeholder="search food" value={foodname} onChange={e => setFoodname(e.target.value)} />
-            <BUTTON type="submit">+</BUTTON>
-          </ADDFOOD>
+          <meal.BOXTOP>
+            <p>{name}</p>
+            <meal.BOXARROW>
+              <IoIosArrowUp onClick={() => {setOpen(false); setSearchfood(false);}} size={25}/>
+            </meal.BOXARROW>
+          </meal.BOXTOP>
+          {fooddata.length>0?
+            fooddata.map((el, index) => 
+            {return <Mealfood key={index} id={el.id} mealid={el.id} name={el.name} quantity={el.quantity} calories={el.calories} carb={el.carb} protein={el.protein} fat={el.fat} />;})
+            :<meal.ADVICE>You haven't added any food yet.</meal.ADVICE>}
+          {searchfood&&(!selectedfood)?
+            <meal.ADDFOOD onSubmit={submitgetfood}>
+              <meal.INPUT label="name" type="text" placeholder="Search food" value={foodname} onChange={e => setFoodname(e.target.value)} />
+              <meal.BUTTON type="submit" disabled={GetFoodLoading}>+</meal.BUTTON>
+            </meal.ADDFOOD>:
+            (!selectedfood?<meal.INSERTMEAL onClick={() => {setSearchfood(true);}}>Insert new food</meal.INSERTMEAL>:null)
+          }
+          {foodresult.length>0&&searchfood&&(!selectedfood)?
+            foodresult.map((el, index) => {return <meal.RESULT key={index} onClick={() => {setSelectedfood(foodresult[index]);}}>{el.name}</meal.RESULT>;})
+            :null}
+          {selectedfood?
+            <meal.ADDFOOD onSubmit={submitpostfood}>
+              <meal.INPUT label="quantity" type="text" placeholder="Amount (g)" value={amount} onChange={e => setAmount(e.target.value)} />
+              <meal.BUTTON type="submit" disabled={PostFoodofMealLoading}>OK</meal.BUTTON>
+            </meal.ADDFOOD>:null}
+          <Mealinfos id={id} ref={childRef}/>
         </>:
         <>
-          <p>{name}</p>
-          <IoIosArrowDown onClick={() => {setOpen(true);}}/>
+          <meal.BOXTOP>
+            <p>{name}</p>
+            <meal.BOXARROW>
+              <IoIosArrowDown onClick={() => {setOpen(true);}} size={25}/>
+            </meal.BOXARROW>
+          </meal.BOXTOP>
         </>}
-    </MEAL>
+    </meal.MEAL>
   );
 }
-
-const MEAL = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: ${props => props.open?'20%':'8%'};
-  width: 70%;
-  margin: 10px 0 40px 0;
-  border-radius: 20px;
-  background-color: gray;
-  font-size: 20px;
-`;
-
-const ADDFOOD = styled.form`
-  display: flex;
-  height: 50%;
-  width: 70%;
-  margin: 50px 0 40px 0;
-  border-radius: 20px;
-`;
-
-const INPUT = styled.input`
-  height: 100%;
-  width: 70%;
-`;
-
-const BUTTON = styled.button`
-  height: 100%;
-  width: 30%;
-  background-color: #ACF0EB;
-`;
