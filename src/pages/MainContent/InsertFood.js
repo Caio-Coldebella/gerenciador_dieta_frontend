@@ -36,10 +36,10 @@ export default function InsertFood() {
     <>
       <FORM onSubmit={submit}>
         <INPUT label="name" type="text" required placeholder="Name" value={name} onChange={e => setName(e.target.value)} />
-        <INPUT label="calories" type="text" required placeholder="Calories (kcal)" value={calories100g} onChange={e => setCalories100g(e.target.value)} />
-        <INPUT label="carb" type="text" required placeholder="Carbohydrate (g)" value={carb100g} onChange={e => setCarb100g(e.target.value)} />
-        <INPUT label="protein" type="text" required placeholder="Protein (g)" value={protein100g} onChange={e => setProtein100g(e.target.value)} />         
-        <INPUT label="fat" type="text" required placeholder="Fat (g)" value={fat100g} onChange={e => setFat100g(e.target.value)} />         
+        <INPUT label="calories" type="text" required placeholder="Calories (kcal) per 100g" value={calories100g} onChange={e => setCalories100g(e.target.value)} />
+        <INPUT label="carb" type="text" required placeholder="Carbohydrate (g) per 100g" value={carb100g} onChange={e => setCarb100g(e.target.value)} />
+        <INPUT label="protein" type="text" required placeholder="Protein (g) per 100g" value={protein100g} onChange={e => setProtein100g(e.target.value)} />         
+        <INPUT label="fat" type="text" required placeholder="Fat (g) per 100g" value={fat100g} onChange={e => setFat100g(e.target.value)} />         
         <BUTTON type="submit" disabled={PostFoodLoading}>Submit</BUTTON>
       </FORM> 
     </>

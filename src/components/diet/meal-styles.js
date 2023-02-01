@@ -21,6 +21,7 @@ const BOXTOP = styled.div`
   height: 40px;
   font-size: 20px;
 `;
+
 const BOXARROW = styled.div`
   position: absolute;
   right: 10px;
