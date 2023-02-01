@@ -1,5 +1,5 @@
 import { IoIosArrowDown, IoIosArrowUp, IoMdTrash } from 'react-icons/io';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import meal from '../../components/diet/meal-styles';
 import useGetFood from '../../hooks/api/useGetFood';
 import usePostFoodofMeal from '../../hooks/api/usePostFoodofMeal';
@@ -15,20 +15,17 @@ export default function Meal({ id, name, setMealinserted, mealinserted }) {
   const [foodresult, setFoodresult] = useState([]);
   const [selectedfood, setSelectedfood] = useState();
   const [amount, setAmount] = useState('');
-  const [updateFoods, setUpdateFoods] = useState(false);
   const [fooddata, setFooddata] = useState([]);
   const { getfood, GetFoodLoading } = useGetFood();
   const { postfoodofmeal, PostFoodofMealLoading } = usePostFoodofMeal();
   const { getfoodofmeal } = useGetFoodofMeal();
   const { deletemeal } = useDeleteMeal();
 
-  const childRef = useRef();
-
   useEffect(() => {
     getfoodofmeal(id)
       .then((res) => {setFooddata(res);})
       .catch((err) => {toast(err);});
-  }, [updateFoods]);
+  }, [mealinserted]);
 
   async function submitgetfood(event) {
     event.preventDefault();
@@ -40,8 +37,7 @@ export default function Meal({ id, name, setMealinserted, mealinserted }) {
     }
   }
   async function action() {
-    setUpdateFoods(!updateFoods);
-    childRef.current.doSomething();
+    setMealinserted(!mealinserted);
   }
   async function submitpostfood(event) {
     event.preventDefault();
@@ -61,7 +57,7 @@ export default function Meal({ id, name, setMealinserted, mealinserted }) {
       setFoodname('');
       setSearchfood(false);
       await postfoodofmeal(id, body);
-      await action();
+      action();
     } catch (error) {
       toast('Fail');
     }
@@ -95,7 +91,7 @@ export default function Meal({ id, name, setMealinserted, mealinserted }) {
               <meal.INPUT label="quantity" type="text" placeholder="Amount (g)" value={amount} onChange={e => setAmount(e.target.value)} />
               <meal.BUTTON type="submit" disabled={PostFoodofMealLoading}>OK</meal.BUTTON>
             </meal.ADDFOOD>:null}
-          <Mealinfos id={id} ref={childRef}/>
+          <Mealinfos id={id} mealinserted={mealinserted}/>
           <meal.BOXTOP><IoMdTrash size={25} onClick={async() => {await deletemeal(id); setMealinserted(!mealinserted); setOpen(false);}}/></meal.BOXTOP>
         </>:
         <>

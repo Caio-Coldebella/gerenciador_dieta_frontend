@@ -1,9 +1,9 @@
-import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import { useEffect, useState } from 'react';
 import mealinfos from '../../components/diet/meal-infos';
 import useGetFoodofMeal from '../../hooks/api/useGetFoodofMeal';
 import { toast } from 'react-toastify';
 
-export const Mealinfos = forwardRef((props, ref) => {
+export function Mealinfos({ id, mealinserted }) {
   const [data, setData] = useState([]);
   const { getfoodofmeal } = useGetFoodofMeal();
   const [total, setTotal] = useState({
@@ -12,18 +12,12 @@ export const Mealinfos = forwardRef((props, ref) => {
     prot: 0,
     fat: 0
   });
-  const [update, setUpdate] = useState(false);
 
-  useImperativeHandle(ref, () => ({
-    doSomething: () => {
-      setUpdate(!update);
-    }
-  }));
   useEffect(() => {
-    getfoodofmeal(props.id)
+    getfoodofmeal(id)
       .then((res) => {setData(res);})
       .catch((err) => {toast(err);});
-  }, [update]);
+  }, [mealinserted]);
 
   useEffect(() => {
     const sum = { cal: 0, carb: 0, prot: 0, fat: 0 };
@@ -48,4 +42,4 @@ export const Mealinfos = forwardRef((props, ref) => {
       <mealinfos.TXT><p>Fat</p><p>{total.fat} g</p></mealinfos.TXT>
     </mealinfos.CONTAINER>
   );
-});
+}
