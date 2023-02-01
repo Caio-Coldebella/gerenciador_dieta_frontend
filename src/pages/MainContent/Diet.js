@@ -38,7 +38,7 @@ export default function Diet() {
         </DIET.ADDMEALOPEN>
         :<DIET.ADDMEAL onClick={() => {setInsertMeal(true);}}><p>Add Meal</p></DIET.ADDMEAL>
       }
-      {data?.meals?.map((el, index) => {return <Meal key={index} id={el.id} name={el.name}/>;})}    
+      {data?.meals?.map((el, index) => {return <Meal key={index} id={el.id} name={el.name} setMealinserted={setMealinserted} mealinserted={mealinserted}/>;})}    
       {data.infos?
         <DIET.DIVMACROS>
           <DIET.TXT color='orange'>Calories: {data.infos.totalcalories} kcal</DIET.TXT>

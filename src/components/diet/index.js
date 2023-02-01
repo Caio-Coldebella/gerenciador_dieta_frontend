@@ -4,7 +4,7 @@ const ADDMEAL = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 10%;
+  height: 70px;
   width: 70%;
   margin: 50px 0 40px 0;
   border-radius: 20px;
@@ -15,7 +15,7 @@ const ADDMEAL = styled.div`
 
 const ADDMEALOPEN = styled.form`
   display: flex;
-  height: 10%;
+  height: 70px;
   width: 70%;
   margin: 50px 0 40px 0;
   border-radius: 20px;
@@ -23,13 +23,16 @@ const ADDMEALOPEN = styled.form`
 
 const INPUT = styled.input`
   height: 100%;
-  width: 70%;
+  width: 75%;
+  font-size: 16px;
+  border-radius: 15px 0 0 15px;
 `;
 
 const BUTTON = styled.button`
   height: 100%;
-  width: 30%;
+  width: 25%;
   background-color: #ACF0EB;
+  border-radius: 0 15px 15px 0;
 `;
 
 const DIVMACROS = styled.div`

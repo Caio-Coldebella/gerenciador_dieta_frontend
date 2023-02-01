@@ -35,3 +35,21 @@ export async function postFoodofMeal(mealId, body, token) {
   });
   return response.data;
 }
+
+export async function deleteFood(foodId, token) {
+  const response = await api.delete(`/meals/food/${foodId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return response.data;
+}
+
+export async function deleteMeal(mealId, token) {
+  const response = await api.delete(`/meals/${mealId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return response.data;
+}
