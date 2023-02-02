@@ -4,7 +4,7 @@ const ADDMEAL = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 70px;
+  min-height: 70px;
   width: 70%;
   margin: 50px 0 40px 0;
   border-radius: 20px;
@@ -15,7 +15,7 @@ const ADDMEAL = styled.div`
 
 const ADDMEALOPEN = styled.form`
   display: flex;
-  height: 70px;
+  min-height: 70px;
   width: 70%;
   margin: 50px 0 40px 0;
   border-radius: 20px;
@@ -40,9 +40,10 @@ const DIVMACROS = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-around;
-  height: 20%;
+  min-height: 140px;
   width: 70%;
   padding: 10px 10px 10px 10px;
+  margin-bottom: 30px;
   background-color: gray;
 `;
 
