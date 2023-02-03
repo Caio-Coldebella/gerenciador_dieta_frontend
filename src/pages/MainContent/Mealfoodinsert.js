@@ -20,7 +20,8 @@ export default function Mealfoodinsert({ searchfood, setSearchfood, action, meal
       const food = await getfoodapi(foodname);
       setFoodresult(food);
     } catch {
-      toast('Fail');
+      setFoodresult([]);
+      toast('Food not found');
     }
   }
   async function submitpostfood(event) {

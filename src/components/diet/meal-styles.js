@@ -4,7 +4,7 @@ const MEAL = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: ${props => props.open?'fit-content':'8%'};
+  height: fit-content;
   width: 70%;
   margin: 10px 0 40px 0;
   padding: 10px 10px 10px 10px;
@@ -17,16 +17,20 @@ const BOXTOP = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 70%;
-  height: 40px;
+  width: 100%;
+  min-height: 40px;
+  height: fit-content;
   font-size: 20px;
+  word-break: break-all;
+  padding: 0 30px 0 30px;
 `;
 
 const BOXARROW = styled.div`
   position: absolute;
-  right: 10px;
+  right: 5px;
   top: calc(50% - 12.5px);
-  width: 40px;
+  z-index: 1;
+  width: 25px;
   height: 100%;
 `;
 
