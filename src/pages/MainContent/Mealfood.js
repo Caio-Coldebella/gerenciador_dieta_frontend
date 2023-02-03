@@ -15,10 +15,10 @@ export default function Mealfood({ id, mealid, name, quantity, calories, carb, p
       {open?
         <>
           <mealfood.FOODTXT><p>{name}</p><p>{quantity} g</p></mealfood.FOODTXT>
-          <mealfood.FOODTXT color='red'><p>Calories</p><p>{calories} kcal</p></mealfood.FOODTXT>
-          <mealfood.FOODTXT color='orange'><p>Carbohydrates</p><p>{carb} g</p></mealfood.FOODTXT>
-          <mealfood.FOODTXT color='yellow'><p>Protein</p><p>{protein} g</p></mealfood.FOODTXT>
-          <mealfood.FOODTXT color='green'><p>Fat</p><p>{fat} g</p></mealfood.FOODTXT>
+          <mealfood.FOODTXT color='red'><p>Calories</p><p>{calories.toFixed(1)} kcal</p></mealfood.FOODTXT>
+          <mealfood.FOODTXT color='orange'><p>Carbohydrates</p><p>{carb.toFixed(1)} g</p></mealfood.FOODTXT>
+          <mealfood.FOODTXT color='yellow'><p>Protein</p><p>{protein.toFixed(1)} g</p></mealfood.FOODTXT>
+          <mealfood.FOODTXT color='green'><p>Fat</p><p>{fat.toFixed(1)} g</p></mealfood.FOODTXT>
           <IoMdTrash size={25} onClick={() => {deletefood();}}/>
         </>:
         <mealfood.FOODTXT><p>{name}</p><p>{quantity} g</p></mealfood.FOODTXT>}
