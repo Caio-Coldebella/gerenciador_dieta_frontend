@@ -6,7 +6,7 @@ import axios from 'axios';
 //POSTGRES_HOST=localhost
 
 const instance = axios.create({
-  baseURL: 'http://localhost/api/'
+  baseURL: process.env.REACT_APP_API_BASE_URL
 });
 
 export default instance;
