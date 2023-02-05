@@ -60,7 +60,7 @@ const INPUT = styled.input`
   width: 90%;
   height: 18%;
   padding: 0 0 0 10px;
-  background-color: #ACF0EB;
+  background-color: #FFFFFF;
   font-size: 20px;
 `;
 
