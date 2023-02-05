@@ -42,9 +42,9 @@ export default function Diet() {
       {data.infos?
         <DIET.DIVMACROS>
           <DIET.TXT color='#EB464F'>Calories: {data.infos.totalcalories.toFixed(1)} kcal</DIET.TXT>
-          <DIET.TXT color='#7E47F5'>Carb: {data.infos.totalcarb.toFixed(1)} g</DIET.TXT>
-          <DIET.TXT color='#5CF24B'>Protein: {data.infos.totalprotein.toFixed(1)} g</DIET.TXT>
-          <DIET.TXT color='#F0D55F'>Fat: {data.infos.totalfat.toFixed(1)} g</DIET.TXT>
+          <DIET.TXT color='#3327B8'>Carb: {data.infos.totalcarb.toFixed(1)} g</DIET.TXT>
+          <DIET.TXT color='#209924'>Protein: {data.infos.totalprotein.toFixed(1)} g</DIET.TXT>
+          <DIET.TXT color='#FF6418'>Fat: {data.infos.totalfat.toFixed(1)} g</DIET.TXT>
         </DIET.DIVMACROS>
         :null}
     </>

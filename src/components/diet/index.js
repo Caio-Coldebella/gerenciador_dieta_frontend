@@ -38,13 +38,12 @@ const BUTTON = styled.button`
 const DIVMACROS = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-around;
   min-height: 140px;
   width: 70%;
   padding: 10px 10px 10px 10px;
   margin-bottom: 30px;
-  background-color: gray;
 `;
 
 const TXT = styled.p`
