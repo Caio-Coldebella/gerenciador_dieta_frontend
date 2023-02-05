@@ -36,10 +36,10 @@ export function Mealinfos({ id, mealinserted }) {
   
   return (
     <mealinfos.CONTAINER>
-      <mealinfos.TXT><p>Calories</p><p>{total.cal} kcal</p></mealinfos.TXT>
-      <mealinfos.TXT color='green'><p>Carbohydrate</p><p>{total.carb} g</p></mealinfos.TXT>
-      <mealinfos.TXT color='yellow'><p>Protein</p><p>{total.prot} g</p></mealinfos.TXT>
-      <mealinfos.TXT><p>Fat</p><p>{total.fat} g</p></mealinfos.TXT>
+      <mealinfos.TXT color='#EB464F'><p>Calories</p><p>{total.cal} kcal</p></mealinfos.TXT>
+      <mealinfos.TXT color='#7E47F5'><p>Carbohydrate</p><p>{total.carb} g</p></mealinfos.TXT>
+      <mealinfos.TXT color='#5CF24B'><p>Protein</p><p>{total.prot} g</p></mealinfos.TXT>
+      <mealinfos.TXT color='#F0D55F'><p>Fat</p><p>{total.fat} g</p></mealinfos.TXT>
     </mealinfos.CONTAINER>
   );
 }

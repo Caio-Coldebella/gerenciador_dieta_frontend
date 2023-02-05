@@ -41,10 +41,10 @@ export default function Diet() {
       {data?.meals?.map((el, index) => {return <Meal key={index} id={el.id} name={el.name} setMealinserted={setMealinserted} mealinserted={mealinserted}/>;})}    
       {data.infos?
         <DIET.DIVMACROS>
-          <DIET.TXT color='orange'>Calories: {data.infos.totalcalories.toFixed(1)} kcal</DIET.TXT>
-          <DIET.TXT color='blue'>Carb: {data.infos.totalcarb.toFixed(1)} g</DIET.TXT>
-          <DIET.TXT color='red'>Protein: {data.infos.totalprotein.toFixed(1)} g</DIET.TXT>
-          <DIET.TXT color='yellow'>Fat: {data.infos.totalfat.toFixed(1)} g</DIET.TXT>
+          <DIET.TXT color='#EB464F'>Calories: {data.infos.totalcalories.toFixed(1)} kcal</DIET.TXT>
+          <DIET.TXT color='#7E47F5'>Carb: {data.infos.totalcarb.toFixed(1)} g</DIET.TXT>
+          <DIET.TXT color='#5CF24B'>Protein: {data.infos.totalprotein.toFixed(1)} g</DIET.TXT>
+          <DIET.TXT color='#F0D55F'>Fat: {data.infos.totalfat.toFixed(1)} g</DIET.TXT>
         </DIET.DIVMACROS>
         :null}
     </>
