@@ -54,17 +54,19 @@ const FORM = styled.form`
   height: 70%;
   width: 90%;
   padding: 10px 10px 10px 10px;
-  background-color: lightgreen;
 `;
 
 const INPUT = styled.input`
   width: 90%;
   height: 18%;
-  background-color: lightcyan;
+  padding: 0 0 0 10px;
+  background-color: #ACF0EB;
+  font-size: 20px;
 `;
 
 const BUTTON = styled.button`
   width: 90%;
   height: 20%;
-  background-color: lightblue;
+  border-radius: 0 0 10px 10px;
+  background-color: #4D7EC8;
 `;
